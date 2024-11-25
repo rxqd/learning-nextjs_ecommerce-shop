@@ -1,16 +1,14 @@
-import Image from 'next/image';
+import Link from 'next/link';
 import { Product } from '@/app/product-data';
-
+import ProductsListItem from './ProductsListItem';
 
 export default function ProductsList({ products }: {products: Product[]}) {
     return (
         <>
          {products.map(product => (
-            <div key={product.id}>
-               <Image src={'/' + product.imageUrl} width={150} height={150} alt="Product Image"/>
-               <h2>{product.name}</h2>
-               <p>{'$' + product.price}</p>
-            </div>
+            <Link key={product.id} href={'/products/' + product.id}>
+               <ProductsListItem product={product} />
+            </Link>
          ))}
         </>
     )
